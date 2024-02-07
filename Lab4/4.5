@@ -1,0 +1,13 @@
+.text
+	li $s0, 5 	# n = 5
+	li $t1 ,1	# i = 1
+	addi $t1, $zero, 0
+Loop:
+	sra $t2, $s2, 1
+	beq $t2, $zero, Endloop
+	add $t1, $t1, 1
+	add $s2, $t2, $zero
+	j Loop	
+Endloop: 		
+	sllv $s0, $s1, $t1
+		

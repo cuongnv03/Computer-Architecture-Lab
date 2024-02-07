@@ -1,0 +1,15 @@
+.text
+
+	li $s0, 0x67bc3262
+
+#Extract Msb:
+	andi $s1, $s0, 0xff000000
+	
+#Clear Lsb:
+	andi $s2, $s0, 0xffffff00
+	
+#Set Lsb: 
+	ori $s3, $s0, 0x0000000ff
+
+#Clear $s0: 
+	xor $s0, $s0, $s0

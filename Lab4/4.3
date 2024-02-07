@@ -1,0 +1,24 @@
+.text
+	li $s1, -66
+	li $s2, 2812
+	bltz $s1,Abs		# $s1 < 0
+	addi $s0,$s1, 0
+	j Continue
+Abs:
+	sub $s0, $zero, $s1
+
+Continue:
+#move 
+	addi $s0, $s1,0	
+	
+#not
+	
+	not $s0, $s1
+	
+#ble
+	slt $t1, $s2, $s1	#s2 < s1
+	bne $t1, $zero, L 	# if s2 < S1 jump to L
+	j Exit
+L:
+
+Exit:	

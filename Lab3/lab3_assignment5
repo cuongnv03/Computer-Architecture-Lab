@@ -1,0 +1,23 @@
+.data
+
+A: .word 7, 5, 6, 4, 3
+.text
+#A[i] == 0
+	la $s2, A		# load addeess A to s2
+	addi $s4, $zero, 1	# s4 = 1 = step
+	addi $s3, $zero, 5 	# j = 5
+	addi $s1, $zero, 0	# i = 0
+	lw $t2, 0($s2)		# t2 = A[0]
+	add $s5, $zero, $t2 	# sum = A[0] 
+loop : 	
+	add $s1, $s1, $s4	# i = i + step
+	add $t1, $s1, $s1 	# t1 = 2 * s1
+	add $t1, $t1 ,$t1	# t1 = 2 * t1 = 4 * s1
+	add $t1, $t1, $s2 	# t1 = t1 + s2 = 4 * s1 + s2
+	lw $t0, 0($t1)		# load word to t0
+	beq $t0, $zero, continue # if to = A[i] == 0 end
+	add $s5, $s5, $t0	# sum = sum + A[i]
+	bne $s1, $s3, loop
+continue:
+
+

@@ -1,0 +1,20 @@
+.text
+#i + j >= m + n
+	addi $s2, $zero, 6	# j = 6
+	addi $s1, $zero, 4	# i = 4
+	addi $t1, $zero, 2	# x = 2
+	addi $t2, $zero, 3	# y = 3 
+	add $t4, $s1 ,$s2	# t4 = i + j
+	li $t5, 6		# m = 7
+	li $t6, 7		# n = 9
+	add $t7, $t5, $t6 	# t7 = m + n
+start: 
+ 	slt $t0, $t4, $t7	#j + i < m + n ? 1 : 0
+ 	bne $t0, $zero, else  	# if j + i < m + n jump to else
+ 	addi $t1, $t1, 1 	# then x = x + 1
+ 	addi $t3, $zero, 1 	# z = 1
+ 	j endif			# jump to endif
+else:
+ 	addi $s2, $t2, -1	# y = y -1
+ 	add $t3, $t3, $t3  	# z = 2 * z
+endif:
